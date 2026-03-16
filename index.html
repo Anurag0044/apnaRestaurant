@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>apna Restaurant</title>
+  
+  <!-- Tailwind CSS -->
+   <link rel="stylesheet" href="    style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  
+</head>
+<body class="min-h-screen bg-neutral-950 text-neutral-50 font-sans selection:bg-amber-500/30 overflow-x-hidden">
+
+  <!-- NEW: Scroll Progress & Custom Cursor Elements -->
+  <div class="scroll-progress" id="scroll-progress"></div>
+  <div class="cursor-dot" id="cursor-dot"></div>
+  <div class="cursor-outline" id="cursor-outline"></div>
+
+  <!-- Navigation -->
+  <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-transparent py-6">
+    <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+      
+      <div class="flex items-center gap-2 cursor-pointer group" onclick="navigateTo('home')">
+        <i data-lucide="chef-hat" class="w-8 h-8 text-amber-500 group-hover:rotate-12 transition-transform duration-300"></i>
+        <span class="text-2xl font-serif font-bold tracking-wider uppercase text-gradient"></span>apna</span>
+      </div>
+
+      <!-- Desktop Nav -->
+      <div class="hidden md:flex items-center gap-8">
+        <button onclick="navigateTo('home')" class="nav-link text-sm uppercase tracking-widest transition-colors hover:text-amber-500 text-amber-500 font-semibold" data-page="home">
+          Home
+        </button>
+        <button onclick="navigateTo('menu')" class="nav-link text-sm uppercase tracking-widest transition-colors hover:text-amber-500 text-neutral-300" data-page="menu">
+          Menu
+        </button>
+        <button class="px-6 py-2 border border-amber-500 text-amber-500 hover:bg-amber-500 hover:text-neutral-950 transition-all duration-300 text-sm uppercase tracking-widest rounded-sm">
+          Reservations
+        </button>
+      </div>
+
+      <!-- Mobile Menu Toggle -->
+      <button id="mobile-menu-btn" class="md:hidden text-neutral-300 hover:text-amber-500 transition-colors" onclick="toggleMobileMenu()">
+        <i data-lucide="menu" class="w-6 h-6"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="fixed inset-0 z-40 bg-neutral-950 transform transition-transform duration-500 ease-in-out flex flex-col items-center justify-center gap-8 md:hidden -translate-y-full">
+    <button onclick="navigateTo('home')" class="mobile-nav-link text-2xl uppercase tracking-widest text-amber-500" data-page="home">
+      Home
+    </button>
+    <button onclick="navigateTo('menu')" class="mobile-nav-link text-2xl uppercase tracking-widest text-neutral-300" data-page="menu">
+      Menu
+    </button>
+    <button class="px-8 py-3 mt-4 border border-amber-500 text-amber-500 text-lg uppercase tracking-widest">
+      Reservations
+    </button>
+  </div>
+
+  <!-- Page Content -->
+  <main class="w-full">
+    
+    <!-- HOME PAGE -->
+    <div id="home-page" class="animate-fade-up">
+      <!-- Hero Section -->
+      <section id="hero-section" class="relative h-screen flex items-center justify-center overflow-hidden">
+        <!-- UPDATE IMAGE URL BELOW: Hero Background Image -->
+        <div id="hero-bg" class="absolute inset-[-5%] parallax-bg z-0" style="background-image: url('https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&q=80&w=1920')">
+          <div class="absolute inset-0 bg-neutral-950/70"></div>
+        </div>
+
+        <div class="relative z-10 text-center px-6 max-w-4xl mx-auto pointer-events-none">
+          <div class="mb-6 flex justify-center animate-float">
+            <i data-lucide="utensils-crossed" class="w-12 h-12 text-amber-500 opacity-80"></i>
+          </div>
+          <h1 class="text-5xl md:text-7xl lg:text-8xl font-serif font-bold mb-6 tracking-tight opacity-0 animate-fade-up" style="animation-delay: 200ms;">
+            A Symphony of <br/> <span class="text-gradient font-style-italic inline-block transition-transform duration-700 hover:scale-105 pointer-events-auto">Flavors</span>
+          </h1>
+          <p class="text-lg md:text-xl text-neutral-300 mb-10 max-w-2xl mx-auto opacity-0 animate-fade-up" style="animation-delay: 400ms;">
+            Experience culinary excellence where modern techniques meet timeless traditions. Every dish tells a story.
+          </p>
+          <div class="opacity-0 animate-fade-up flex flex-col sm:flex-row gap-4 justify-center pointer-events-auto" style="animation-delay: 600ms;">
+            <button onclick="navigateTo('menu')" class="magnetic-btn px-8 py-4 bg-amber-500 text-neutral-950 font-semibold tracking-widest uppercase hover:bg-amber-400 flex items-center justify-center gap-2 group relative">
+              <span class="relative z-10 flex items-center gap-2">
+                Explore Menu
+                <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+              </span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Story / About Section -->
+      <section class="py-24 px-6 max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+          <div class="reveal-item">
+            <div class="relative group">
+              <div class="absolute inset-0 bg-amber-500/20 translate-x-4 translate-y-4 rounded-lg transition-transform group-hover:translate-x-6 group-hover:translate-y-6 duration-500"></div>
+              <!-- UPDATE IMAGE URL BELOW: Chef/Story Image -->
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRb73ZX4nIEAQZgYPH6I9nsRaJe0mpT6aJVwA&s" alt="Chef cooking" class="relative z-10 w-full h-[500px] object-cover rounded-lg shadow-2xl grayscale hover:grayscale-0 transition-all duration-700" />
+            </div>
+          </div>
+          
+          <div class="reveal-item" style="transition-delay: 200ms;">
+            <div>
+              <h3 class="text-amber-500 tracking-widest uppercase text-sm mb-4 font-semibold">Our Story</h3>
+              <h2 class="text-4xl md:text-5xl font-serif mb-8">Crafting Memories Since 2010</h2>
+              <p class="text-neutral-400 mb-6 leading-relaxed">
+                Nestled in the heart of the city, Lumina is more than a restaurant—it's a destination. Our culinary team, led by award-winning chefs, meticulously sources the finest local and seasonal ingredients to create dishes that are both innovative and comforting.
+              </p>
+              <p class="text-neutral-400 mb-8 leading-relaxed">
+                Whether you're celebrating a special occasion or simply enjoying a night out, our elegant ambiance and attentive service ensure an unforgettable dining experience.
+              </p>
+              <img src="https://upload.wikimedia.org/wikipedia/commons/f/f6/Signature_placeholder.svg" alt="Signature" class="h-12 opacity-50 filter invert" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Featured Dishes -->
+      <section class="py-24 relative overflow-hidden bg-neutral-900 border-y border-neutral-800">
+         <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="reveal-item text-center mb-16">
+              <h3 class="text-amber-500 tracking-widest uppercase text-sm mb-4 font-semibold">Signatures</h3>
+              <h2 class="text-4xl md:text-5xl font-serif">Featured Creations</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <!-- Item 1 -->
+              <div class="reveal-item group cursor-pointer" style="transition-delay: 0ms;">
+                <div class="relative h-80 overflow-hidden rounded-lg mb-6">
+                  <div class="absolute inset-0 bg-neutral-950/40 group-hover:bg-transparent transition-colors duration-500 z-10"></div>
+                  <!-- UPDATE IMAGE URL BELOW: Featured Dish 1 -->
+                  <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&q=80&w=600" alt="Wood-fired Pizza" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-out" />
+                </div>
+                <div class="text-center">
+                  <h4 class="text-xl font-serif mb-2 group-hover:text-amber-500 transition-colors">Classic Pizza</h4>
+                  <p class="text-sm text-neutral-400">Fresh mozzarella, basil, and a perfectly blistered crust.</p>
+                </div>
+              </div>
+              
+              <!-- Item 2 -->
+              <div class="reveal-item group cursor-pointer" style="transition-delay: 150ms;">
+                <div class="relative h-80 overflow-hidden rounded-lg mb-6">
+                  <div class="absolute inset-0 bg-neutral-950/40 group-hover:bg-transparent transition-colors duration-500 z-10"></div>
+                  <!-- UPDATE IMAGE URL BELOW: Featured Dish 2 -->
+                  <img src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&q=80&w=600" alt="Biryani" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-out" />
+                </div>
+                <div class="text-center">
+                  <h4 class="text-xl font-serif mb-2 group-hover:text-amber-500 transition-colors">Aromatic Biryani</h4>
+                  <p class="text-sm text-neutral-400">Fragrant basmati rice layered with rich spices.</p>
+                </div>
+              </div>
+
+              <!-- Item 3 -->
+              <div class="reveal-item group cursor-pointer" style="transition-delay: 300ms;">
+                <div class="relative h-80 overflow-hidden rounded-lg mb-6">
+                  <div class="absolute inset-0 bg-neutral-950/40 group-hover:bg-transparent transition-colors duration-500 z-10"></div>
+                  <!-- UPDATE IMAGE URL BELOW: Featured Dish 3 -->
+                  <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&q=80&w=600" alt="Cake" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-out" />
+                </div>
+                <div class="text-center">
+                  <h4 class="text-xl font-serif mb-2 group-hover:text-amber-500 transition-colors">Decadent Cake</h4>
+                  <p class="text-sm text-neutral-400">Rich layers of frosting and moist sponge.</p>
+                </div>
+              </div>
+            </div>
+         </div>
+      </section>
+    </div>
+
+    <!-- MENU PAGE -->
+    <div id="menu-page" class="hidden pt-32 pb-24 min-h-screen animate-fade-up">
+      <!-- Menu Header -->
+      <div class="text-center max-w-3xl mx-auto px-6 mb-16">
+        <div class="reveal-item">
+          <h1 class="text-5xl md:text-6xl font-serif mb-6">Our Menu</h1>
+          <p class="text-neutral-400 text-lg">
+            A curated selection of seasonal dishes, designed to delight the senses and ignite the palate.
+          </p>
+        </div>
+      </div>
+
+      <!-- Category Filters -->
+      <div class="sticky top-20 z-30 glass-panel border-y border-neutral-800 py-4 mb-16">
+        <div id="category-filters" class="max-w-7xl mx-auto px-6 flex justify-center gap-4 md:gap-8 overflow-x-auto no-scrollbar">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <!-- Menu Items Grid -->
+      <div class="max-w-7xl mx-auto px-6">
+        <div id="menu-grid" class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-neutral-900 pt-20 pb-10 border-t border-neutral-800">
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+      <div class="space-y-4">
+        <div class="flex items-center gap-2">
+          <i data-lucide="chef-hat" class="w-6 h-6 text-amber-500"></i>
+          <span class="text-xl font-serif font-bold tracking-wider uppercase">Lumina</span>
+        </div>
+        <p class="text-neutral-400 text-sm leading-relaxed">
+          Elevating modern culinary arts with passion, precision, and the finest seasonal ingredients.
+        </p>
+      </div>
+      
+      <div>
+        <h4 class="text-lg font-serif mb-6 text-amber-500">Contact</h4>
+        <ul class="space-y-4 text-sm text-neutral-400">
+          <li class="flex items-center gap-3"><i data-lucide="map-pin" class="w-4 h-4"></i> 123 Culinary Blvd, NY 10001</li>
+          <li class="flex items-center gap-3"><i data-lucide="phone" class="w-4 h-4"></i> +1 (555) 123-4567</li>
+          <li class="flex items-center gap-3"><i data-lucide="clock" class="w-4 h-4"></i> Daily: 5:00 PM - 11:00 PM</li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-lg font-serif mb-6 text-amber-500">Links</h4>
+        <ul class="space-y-3 text-sm text-neutral-400">
+          <li><button onclick="navigateTo('home')" class="hover:text-amber-500 transition-colors">Home</button></li>
+          <li><button onclick="navigateTo('menu')" class="hover:text-amber-500 transition-colors">Menu</button></li>
+          <li><button class="hover:text-amber-500 transition-colors">Reservations</button></li>
+          <li><button class="hover:text-amber-500 transition-colors">Private Dining</button></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-lg font-serif mb-6 text-amber-500">Follow Us</h4>
+        <div class="flex gap-4">
+          <button class="w-10 h-10 rounded-full bg-neutral-800 flex items-center justify-center hover:bg-amber-500 hover:text-neutral-950 transition-all duration-300">
+            <i data-lucide="instagram" class="w-4 h-4"></i>
+          </button>
+          <button class="w-10 h-10 rounded-full bg-neutral-800 flex items-center justify-center hover:bg-amber-500 hover:text-neutral-950 transition-all duration-300">
+            <i data-lucide="twitter" class="w-4 h-4"></i>
+          </button>
+          <button class="w-10 h-10 rounded-full bg-neutral-800 flex items-center justify-center hover:bg-amber-500 hover:text-neutral-950 transition-all duration-300">
+            <i data-lucide="facebook" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="max-w-7xl mx-auto px-6 text-center text-sm text-neutral-600 border-t border-neutral-800 pt-8">
+      <p>&copy; <span id="year"></span> Lumina Restaurant. All rights reserved.</p>
+    </div>
+  </footer>
+<script src="script.js"></script>
+</body>
+</html>
